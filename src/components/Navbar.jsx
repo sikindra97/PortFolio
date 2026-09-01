@@ -28,7 +28,7 @@ function Navbar() {
           onClick={() => scrollToSection("home")}
           className="text-xl font-bold tracking-tight"
         >
-          SR<span className="text-gray-500">.</span>
+          SK<span className="text-gray-500">.</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
