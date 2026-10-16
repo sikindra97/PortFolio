@@ -1,3 +1,4 @@
+
 import {
   SiJavascript,
   SiCplusplus,
@@ -24,7 +25,6 @@ const skillGroups = [
       ["SQL", SiMysql],
     ],
   },
-
   {
     title: "Frontend",
     skills: [
@@ -35,7 +35,6 @@ const skillGroups = [
       ["Tailwind CSS", SiTailwindcss],
     ],
   },
-
   {
     title: "Backend",
     skills: [
@@ -48,7 +47,6 @@ const skillGroups = [
       ["Redis & Caching", SiRedis],
     ],
   },
-
   {
     title: "Databases",
     skills: [
@@ -57,7 +55,6 @@ const skillGroups = [
       ["MySQL", SiMysql],
     ],
   },
-
   {
     title: "Tools & Platforms",
     skills: [
@@ -78,21 +75,42 @@ const coreSkills = [
   "Computer Networks",
 ];
 
+function SkillBadge({ name, Icon }) {
+  return (
+    <span
+      className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-black/30 px-3 py-2 text-sm text-gray-400 transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
+    >
+      {Icon && (
+        <Icon
+          size={15}
+          aria-hidden="true"
+          className="shrink-0 text-gray-400 transition-colors group-hover:text-white"
+        />
+      )}
+      <span>{name}</span>
+    </span>
+  );
+}
+
 function Skills() {
   return (
     <section
       id="skills"
-      className="border-t border-white/5 py-24"
+      aria-labelledby="skills-title"
+      className="border-t border-white/5 py-16 sm:py-20"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="max-w-3xl">
-          <p className="text-sm uppercase tracking-[0.25em] text-gray-500">
+          <p className="text-sm font-medium uppercase tracking-[0.25em] text-gray-500">
             Technical Skills
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+          <h2
+            id="skills-title"
+            className="mt-3 text-4xl font-bold leading-tight tracking-tight sm:text-5xl"
+          >
             Technologies I use to
             <br />
             <span className="gradient-text">
@@ -100,123 +118,67 @@ function Skills() {
             </span>
           </h2>
 
-          <p className="mt-5 text-base leading-7 text-gray-500">
-            A combination of full-stack development technologies,
-            backend architecture, databases and computer science
-            fundamentals that I use to build reliable applications.
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-500 sm:text-base">
+            My technical toolkit spans full-stack development, API design,
+            databases, development tools, and computer science fundamentals.
           </p>
         </div>
 
         {/* Skill Groups */}
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
           {skillGroups.map((group) => (
             <div
               key={group.title}
-              className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition duration-300 hover:border-white/20 hover:bg-white/[0.035]"
+              className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.035] sm:p-6"
             >
               {/* Group Header */}
-              <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-white">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-sm font-semibold text-white sm:text-base">
                   {group.title}
                 </h3>
 
-                <span className="text-xs text-gray-600">
+                <span className="text-xs tabular-nums text-gray-600">
                   {String(group.skills.length).padStart(2, "0")}
                 </span>
               </div>
 
               {/* Skills */}
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-wrap gap-2.5">
                 {group.skills.map(([name, Icon]) => (
-                  <div
+                  <SkillBadge
                     key={name}
-                    className="flex items-center gap-2 rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-gray-400 transition duration-200 hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
-                  >
-                    {Icon && (
-                      <Icon
-                        size={16}
-                        className="shrink-0"
-                      />
-                    )}
-
-                    <span>{name}</span>
-                  </div>
+                    name={name}
+                    Icon={Icon}
+                  />
                 ))}
               </div>
             </div>
           ))}
 
           {/* Core CS */}
-          <div className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition duration-300 hover:border-white/20 hover:bg-white/[0.035] md:col-span-2 lg:col-span-1">
-
-            <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-white">
-                Core CS
+          <div className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.035] sm:p-6">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-sm font-semibold text-white sm:text-base">
+                Core Computer Science
               </h3>
 
-              <span className="text-xs text-gray-600">
-                05
+              <span className="text-xs tabular-nums text-gray-600">
+                {String(coreSkills.length).padStart(2, "0")}
               </span>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-2.5">
               {coreSkills.map((skill) => (
-                <span
+                <SkillBadge
                   key={skill}
-                  className="rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-gray-400 transition duration-200 hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
-                >
-                  {skill}
-                </span>
+                  name={skill}
+                  Icon={null}
+                />
               ))}
             </div>
           </div>
         </div>
-
-        {/* Bottom Summary */}
-        <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-
-            {/* Primary Stack */}
-            <div>
-              <p className="text-sm font-medium text-white">
-                Primary Stack
-              </p>
-
-              <p className="mt-2 text-sm text-gray-500">
-                React.js • Node.js • Express.js • MongoDB
-              </p>
-            </div>
-
-            <div className="h-px w-full bg-white/10 sm:h-8 sm:w-px" />
-
-            {/* State Management */}
-            <div>
-              <p className="text-sm font-medium text-white">
-                State Management
-              </p>
-
-              <p className="mt-2 text-sm text-gray-500">
-                Redux Toolkit
-              </p>
-            </div>
-
-            <div className="h-px w-full bg-white/10 sm:h-8 sm:w-px" />
-
-            {/* Problem Solving */}
-            <div>
-              <p className="text-sm font-medium text-white">
-                Problem Solving
-              </p>
-
-              <p className="mt-2 text-sm text-gray-500">
-                1300+ DSA Problems Solved
-              </p>
-            </div>
-
-          </div>
-        </div>
-
       </div>
     </section>
   );
